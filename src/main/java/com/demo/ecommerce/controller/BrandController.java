@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/brands")
+@RequestMapping("api/brand")
 public class BrandController {
 
     private final BrandService brandService;
@@ -44,9 +44,9 @@ public class BrandController {
     @GetMapping("/getall")
     public ResponseEntity<List<BrandDto>> getAll(){
         ServiceResult<List<BrandDto>> serviceResult=brandService.findAll();
-        if(serviceResult.isSuccess()){
-            return new ResponseEntity<>(serviceResult.getData(), HttpStatus.OK);
+        if(serviceResult.getData().isEmpty()){
+            return  ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.badRequest().build();
+        return new ResponseEntity<>(serviceResult.getData(), HttpStatus.OK);
     }
 }

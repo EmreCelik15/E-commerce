@@ -14,5 +14,5 @@ public class BrandDto {
     private String brandName;
 
 
-    }
+}
 
