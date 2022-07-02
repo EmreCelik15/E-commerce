@@ -24,13 +24,6 @@ public class CategoryService {
 
     public ServiceResult<CategoryDto> add(CategoryDto categoryDto) {
         ServiceResult<CategoryDto> serviceResult = new ServiceResult<>();
-
-        if (categoryDto.getCategoryName().equals(null)) {
-
-            serviceResult.setMessage("Category name can not be null!");
-            serviceResult.setSuccess(false);
-            return serviceResult;
-        }
         Category category = categoryRepository.save(categoryDtoConverter.toEntity(categoryDto));
         serviceResult.setData(categoryDtoConverter.convertDto(category));
         serviceResult.setMessage("Added");
@@ -68,7 +61,9 @@ public class CategoryService {
                 return serviceResult;
             }
             else{
-                return null;
+                serviceResult.setMessage("Categories can not be listed!");
+                serviceResult.setSuccess(false);
+                return serviceResult;
             }
         }
         catch (NullPointerException nullPointerException){

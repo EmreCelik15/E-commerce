@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Provider;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CategoryDto> add(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<CategoryDto> add(@RequestBody @Valid CategoryDto categoryDto) {
         ServiceResult<CategoryDto> serviceResult = categoryService.add(categoryDto);
         if (serviceResult.isSuccess()) {
             return ResponseEntity.ok().build();
@@ -30,11 +31,11 @@ public class CategoryController {
     }
 
     @GetMapping("/getbyname")
-    public ResponseEntity<ServiceResult<List<CategoryDto>>> getByBrandName(@RequestParam(value = "name") String name) {
+    public ResponseEntity<ServiceResult<List<CategoryDto>>> getByCategoryName(@RequestParam(value = "name") String name) {
         if (categoryService.findByCategoryName(name).isSuccess()) {
             return new ResponseEntity<>(categoryService.findByCategoryName(name), HttpStatus.OK);
         }
-        return ResponseEntity.badRequest().build();
+        return new ResponseEntity<>(categoryService.findByCategoryName(name),HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getall")

@@ -25,10 +25,8 @@ public class Market {
     private String marketName;
 
     @Column(name = "adress")
-    @NotNull(message = "Adress can not be null!")
     private String adress;
 
     @Column(name = "shops_count")
-    @NotNull(message = "Shop count can not be null!")
     private Long shopCount;
 }

@@ -18,12 +18,11 @@ public class Product {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name")
-    @NotNull(message = "Name can not be null!")
     private String productName;
 
     @Column(name = "price")
-    @NotNull(message = "Price can not be null!")
     private Integer price;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -22,18 +22,15 @@ public class Shop {
     private Long id;
 
     @Column(name = "name")
-    @NotNull(message = "Shopname can not be null!")
     private String shopName;
 
     @Column(name = "adress")
-    @NotNull(message = "Adress can not be null!")
     private String adress;
 
     @Column(name="products_count")
-    @NotNull(message = "Count can not be null!")
     private Long productCount;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "market_id",nullable = false)
     private Market market;
 

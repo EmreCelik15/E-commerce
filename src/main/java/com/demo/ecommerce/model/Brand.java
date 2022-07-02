@@ -20,6 +20,5 @@ public class Brand {
     private Long id;
 
     @Column(name = "name")
-    @NotNull(message = "Name can not be null!")
     private String brandName;
 }

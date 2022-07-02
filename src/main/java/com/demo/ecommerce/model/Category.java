@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+
 
 @Entity
 @Data
@@ -21,7 +22,6 @@ public class Category {
     private Long id;
 
     @Column(name = "name")
-    @NotNull(message = "Name can not be null!")
     private String categoryName;
 
 }
